@@ -71,7 +71,7 @@ export default class BankHolidays extends Vue {
   }
 
   mounted(): void {
-    this.getTodaysBankHoliday('england-and-wales')
+    this.getTodaysBankHoliday("england-and-wales");
   }
 
   async fetchBankHolidays(): Promise<void> {
@@ -89,13 +89,13 @@ export default class BankHolidays extends Vue {
     this.getTodaysBankHoliday(`${region.id}`);
   }
 
-  getTodaysBankHoliday(region: string): Promise<Event[]|undefined> {
+  getTodaysBankHoliday(region: string): Event[] | undefined {
     let now = Date.now();
     let twelvemoths = dateFormatterService.dateInFutureByMonthCount(12);
     let startDate = now;
     let endDate = twelvemoths;
 
-     let regionData = this.data[`${region}`];
+    let regionData = this.data[`${region}`];
     let filteredEvents: Event[] | undefined = regionData.events?.map(
       (a: Event) => {
         return {
