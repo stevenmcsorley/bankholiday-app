@@ -70,10 +70,6 @@ export default class BankHolidays extends Vue {
     await this.fetchBankHolidays();
   }
 
-  mounted(): void {
-    this.getTodaysBankHoliday("england-and-wales");
-  }
-
   async fetchBankHolidays(): Promise<void> {
     try {
       this.isLoading = true;
@@ -89,23 +85,22 @@ export default class BankHolidays extends Vue {
     this.getTodaysBankHoliday(`${region.id}`);
   }
 
-  getTodaysBankHoliday(region: string): Event[] | undefined {
+  getTodaysBankHoliday(region: string): Event[] {
     let now = Date.now();
     let twelvemoths = dateFormatterService.dateInFutureByMonthCount(12);
     let startDate = now;
     let endDate = twelvemoths;
 
-    let regionData = this.data[`${region}`];
-    let filteredEvents: Event[] | undefined = regionData.events?.map(
-      (a: Event) => {
-        return {
-          date: new Date(a.date),
-          title: a.title,
-          notes: a.notes,
-          bunting: a.bunting,
-        };
-      }
-    );
+    let regionData: Region = this.data[`${region}`];
+    console.log("regionData", regionData);
+    let filteredEvents: Event[] = regionData.events.map((a: Event) => {
+      return {
+        date: new Date(a.date),
+        title: a.title,
+        notes: a.notes,
+        bunting: a.bunting,
+      };
+    });
 
     this.regionEvents = filteredEvents?.filter((d) => {
       return d.date > startDate && d.date < endDate;

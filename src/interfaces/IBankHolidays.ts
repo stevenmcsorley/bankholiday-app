@@ -7,7 +7,7 @@ export interface Event {
 
 export interface Region {
   division?: string;
-  events?: Event[];
+  events: Event[];
 }
 
 export interface IBankHolidays {
