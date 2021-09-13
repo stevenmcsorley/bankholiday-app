@@ -1,4 +1,4 @@
-import { config, mount, createLocalVue, shallowMount } from "@vue/test-utils"; 
+import { config, mount, createLocalVue, shallowMount } from "@vue/test-utils";
 config.showDeprecationWarnings = false;
 import BankHolidays from "@/components/BankHolidays.vue";
 import { dateFormatterService } from "../../src/services/DateFormatterService";
@@ -89,31 +89,7 @@ describe("BankHolidays.vue", () => {
   });
 
   it("it matches snapshot", () => {
-    expect(wrapper).toMatchInlineSnapshot(`
-      <section class="wrapper">
-        <h4 class="dev-u-padding-vertical">
-          Bank Holiday Viewer
-          <span></span>
-        </h4>
-        <div class="dev-u-padding-vertical"><label class="dev-label">Region Select</label> <select class="dev-select">
-            <option disabled="disabled" selected="selected" hidden="hidden" value="[object Object]">
-              Please select region
-            </option>
-            <option value="[object Object]">
-              England and Wales
-            </option>
-            <option value="[object Object]">
-              Northern Ireland
-            </option>
-            <option value="[object Object]">
-              Scotland
-            </option>
-          </select></div>
-        <div>
-          <ul></ul>
-        </div>
-      </section>
-    `);
+    expect(wrapper).toMatchInlineSnapshot(`null`);
   });
 });
 
