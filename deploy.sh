@@ -10,5 +10,5 @@ cd dist
 git init
 git add -A
 git commit -m 'deploy'
-git push -f github.com/stevenmcsorley/bankholiday-app main:gh-pages
+git push -f https://github.com/stevenmcsorley/bankholiday-app master:gh-pages
 cd -
