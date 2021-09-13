@@ -97,12 +97,14 @@ export default class BankHolidays extends Vue {
     this.regionEvents = filteredEvents?.filter((d) => {
       return d.date > startDate && d.date < endDate;
     });
+    console.log(this.regionEvents)
     return this.regionEvents;
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   get bankHolidayEvents() {
     return this.regionEvents?.map((b) => {
+      console.log("ddad",b.date)
       return {
         date: dateFormatterService.dateShortWithOrdinal(b.date),
         title: b.title,
