@@ -24,10 +24,19 @@
         <li v-for="(bankHoliday, key) in bankHolidayEvents" :key="key">
           <div
             class="dev-card-base dev-u-padding-default dev-u-margin-vertical"
+            :class="{ 'dev-card-base--highlight': key == 0 }"
           >
-            <h4>{{ bankHoliday.title }}</h4>
-            <p>{{ bankHoliday.date }}</p>
-            <p>{{ bankHoliday.note }}</p>
+            <div class="dev-grid-wrapper__div--row--3">
+              <div>
+                <h4>{{ bankHoliday.title }}</h4>
+              </div>
+              <div>
+                <p>{{ bankHoliday.date }}</p>
+              </div>
+              <div>
+                <p>{{ bankHoliday.notes }}</p>
+              </div>
+            </div>
           </div>
         </li>
       </ul>
@@ -97,14 +106,12 @@ export default class BankHolidays extends Vue {
     this.regionEvents = filteredEvents?.filter((d) => {
       return d.date > startDate && d.date < endDate;
     });
-    console.log(this.regionEvents)
     return this.regionEvents;
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   get bankHolidayEvents() {
     return this.regionEvents?.map((b) => {
-      console.log("ddad",b.date)
       return {
         date: dateFormatterService.dateShortWithOrdinal(b.date),
         title: b.title,

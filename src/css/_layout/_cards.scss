@@ -11,6 +11,12 @@
     box-shadow: none;
   }
 
+  &--highlight {
+    background: $primary-color-soft;
+    color: $elementBackgroundColour;
+    box-shadow: $box-shadow-level-1;
+  }
+
   &__header {
     border-bottom: 1px solid $backgroundColour;
     display: flex;
