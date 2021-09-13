@@ -2,7 +2,7 @@ import { config, mount, createLocalVue, shallowMount } from "@vue/test-utils";
 config.showDeprecationWarnings = false;
 import BankHolidays from "@/components/BankHolidays.vue";
 import { dateFormatterService } from "../../src/services/DateFormatterService";
-import { Event } from "../../src/interfaces/IBankHolidays";
+
 dateFormatterService.dateShortWithOrdinal = jest.fn();
 const localVue = createLocalVue();
 
