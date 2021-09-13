@@ -111,14 +111,16 @@ export default class BankHolidays extends Vue {
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   get bankHolidayEvents() {
-    return this.regionEvents?.map((b) => {
-      return {
-        date: dateFormatterService.dateShortWithOrdinal(b.date),
-        title: b.title,
-        notes: b.notes,
-        bunting: b.bunting,
-      };
-    });
+    return (
+      this.regionEvents?.map((b) => {
+        return {
+          date: dateFormatterService.dateShortWithOrdinal(b.date),
+          title: b.title,
+          notes: b.notes,
+          bunting: b.bunting,
+        };
+      }) ?? []
+    );
   }
 }
 </script>
