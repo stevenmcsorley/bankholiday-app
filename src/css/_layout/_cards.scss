@@ -1,0 +1,39 @@
+.#{$prefix}card-base {
+  background: $elementBackgroundColour;
+  box-shadow: $box-shadow-level-1;
+  border-radius: 2px;
+
+  &--column {
+    flex-direction: column;
+  }
+  &--clean {
+    background: transparent;
+    box-shadow: none;
+  }
+
+  &__header {
+    border-bottom: 1px solid $backgroundColour;
+    display: flex;
+    align-items: center;
+  }
+
+  &__body {
+    background: transparent;
+
+    &--column{
+      flex-direction: column;
+    }
+
+    &--grow{
+      flex-grow: 1;
+    }
+  }
+
+  &__footer {
+
+    &--row{
+      flex-direction: row;
+    }
+
+  }
+}

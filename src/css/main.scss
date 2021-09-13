@@ -1,2 +1,6 @@
-@import 'normalize-scss';
-@include normalize();
+@import "_partials/manifest";
+@import "_utility/manifest";
+@import "_base/manifest";
+@import "_layout/manifest";
+@import "_modules/manifest";
+@import "_theme/manifest";

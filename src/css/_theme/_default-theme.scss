@@ -1,0 +1,19 @@
+$darkula-1: #000000;
+$darkula-2: #2b2727;
+$darkula-3: #474444;
+$darkula-4: #676565;
+$darkula-5: #ffffff;
+
+a {
+  color: $primary-color-soft;
+}
+
+a:hover {
+  color: lighten($primary-color-soft, 10%);
+
+}
+
+body {
+  background-color: $backgroundColour;
+  color: $primary-color-hard;
+}

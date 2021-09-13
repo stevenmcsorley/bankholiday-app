@@ -1,20 +1,33 @@
 <template>
-  <section>
-    <div>
-      <select @change="onChange($event)" v-model="selected">
+  <section class="wrapper">
+    <h4 class="dev-u-padding-vertical">
+      Bank Holiday Viewer
+      <span v-if="{ selected }">{{ selected.text }}</span>
+    </h4>
+    <div class="dev-u-padding-vertical">
+      <label class="dev-label">Region Select</label>
+      <select class="dev-select" @change="onChange($event)" v-model="selected">
         <option disabled value="">Please select region</option>
-        <option value="england-and-wales">England and Wales</option>
-        <option value="northern-ireland">Northern Ireland</option>
-        <option value="scotland">Scotland</option>
+        <option
+          v-for="(option, key) in regionSelects"
+          :key="key"
+          :value="{ id: option.id, text: option.name }"
+        >
+          {{ option.name }}
+        </option>
       </select>
     </div>
     <div>
       <!-- {{ bankHolidayEvents }} -->
       <ul>
         <li v-for="(bankHoliday, key) in bankHolidayEvents" :key="key">
-          <h4>{{ bankHoliday.title }}</h4>
-          <p>{{ bankHoliday.date }}</p>
-          <p>{{ bankHoliday.note }}</p>
+          <div
+            class="dev-card-base dev-u-padding-default dev-u-margin-vertical"
+          >
+            <h4>{{ bankHoliday.title }}</h4>
+            <p>{{ bankHoliday.date }}</p>
+            <p>{{ bankHoliday.note }}</p>
+          </div>
         </li>
       </ul>
     </div>
@@ -32,6 +45,11 @@ const Api = ApiFactory.get("bankholidays");
 export default class BankHolidays extends Vue {
   isLoading = false;
   selected = "";
+  regionSelects = [
+    { id: "england-and-wales", name: "England and Wales" },
+    { id: "northern-ireland", name: "Northern Ireland" },
+    { id: "scotland", name: "Scotland" },
+  ];
   data: { [key: string]: Region } = {};
   regionEvents: Event[] | undefined = [];
   async created(): Promise<void> {
@@ -48,9 +66,9 @@ export default class BankHolidays extends Vue {
     }
   }
 
-  onChange(event: { target: { value: unknown } }): void {
-    let region = event.target.value;
-    this.getTodaysBankHoliday(`${region}`);
+  onChange(): void {
+    let region = this.selected;
+    this.getTodaysBankHoliday(`${region.id}`);
   }
 
   getTodaysBankHoliday(region: string): Event[] | undefined {
