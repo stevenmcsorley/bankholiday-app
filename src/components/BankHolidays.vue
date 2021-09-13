@@ -6,8 +6,10 @@
     </h4>
     <div class="dev-u-padding-vertical">
       <label class="dev-label">Region Select</label>
-      <select class="dev-select" @change="onChange($event)" v-model="selected">
-        <option disabled value="">Please select region</option>
+      <select class="dev-select" @change="onChange()" v-model="selected">
+        <option :value="{ id: '', name: '' }" disabled selected hidden>
+          {{ defaultValue }}
+        </option>
         <option
           v-for="(option, key) in regionSelects"
           :key="key"
@@ -18,7 +20,6 @@
       </select>
     </div>
     <div>
-      <!-- {{ bankHolidayEvents }} -->
       <ul>
         <li v-for="(bankHoliday, key) in bankHolidayEvents" :key="key">
           <div
@@ -36,7 +37,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Region, Event } from "./../interfaces/IBankHolidays";
+import { Region, Event, IRegionSelect } from "./../interfaces/IBankHolidays";
 import { dateFormatterService } from "../services/DateFormatterService";
 import ApiFactory from "./../repo/ApiFactory";
 const Api = ApiFactory.get("bankholidays");
@@ -44,7 +45,11 @@ const Api = ApiFactory.get("bankholidays");
 @Component({})
 export default class BankHolidays extends Vue {
   isLoading = false;
-  selected = "";
+  selected: IRegionSelect = {
+    id: "",
+    name: "",
+  };
+  defaultValue = "Please select region";
   regionSelects = [
     { id: "england-and-wales", name: "England and Wales" },
     { id: "northern-ireland", name: "Northern Ireland" },

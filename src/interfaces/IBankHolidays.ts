@@ -15,3 +15,8 @@ export interface IBankHolidays {
   northernIreland?: Region | string;
   scotland?: Region | string;
 }
+
+export interface IRegionSelect {
+  id?: string;
+  name?: string;
+}
