@@ -92,7 +92,6 @@ export default class BankHolidays extends Vue {
     let endDate = twelvemoths;
 
     let regionData: Region = this.data[`${region}`];
-    console.log("regionData", regionData);
     let filteredEvents: Event[] = regionData.events.map((a: Event) => {
       return {
         date: new Date(a.date),
